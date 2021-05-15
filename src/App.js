@@ -36,7 +36,7 @@ const salts = [
 
 function calculate (setResult){
   console.log("calculating")
-  let response =  fetch("http://localhost:5000/calculate",
+  let response =  fetch("https://powerful-inlet-02477.herokuapp.com/calculate",
     {method: "POST",
     headers: {
       // 'Content-Type': 'application/json'
