@@ -24,3 +24,7 @@ input {
   flex: 0 0 10px;
   max-width: 50px
 }
+
+.level-item {
+  display: block;
+}
