@@ -12,17 +12,25 @@ class Salts extends Component {
             <div className="column">
                 <h2 className="subtitle mb-4"> Salts in 10L </h2>
                 <table className="table card is-fullwidth">
-                    <th>
-                        Salt
-                    </th>
-                    <th>
-                        Weight(g)
-                    </th>
+                    <thead>
+                        <tr>
+                            <th>
+                                Salt
+                            </th>
+                            <th>
+                                Weight(g)
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
                     {Object.entries(this.props.weights).map(([name, weight], _)  =>
                         <tr key={name}>
                             <td>{name}</td>
                             <td>{weight}</td>
                         </tr>)}
+                    </tbody>
+
+
                 </table>
             </div>
         )

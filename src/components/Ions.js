@@ -23,22 +23,26 @@ class Ions extends Component {
             <div className="column">
             <h2 className="subtitle mb-4">Ion Configuration</h2>
             <table className="table card is-fullwidth">
-                <th>
-                    Ion
-                </th>
-                <th>
-                    Desired
-                </th>
-                <th>
-                    +/-
-                </th>
-                <th>
-                    multiplyer
-                </th>
-                <th>
-                    Actual
-                </th>
-
+                <thead>
+                    <tr>
+                        <th>
+                            Ion
+                        </th>
+                        <th>
+                            Desired
+                        </th>
+                        <th>
+                            +/-
+                        </th>
+                        <th>
+                            multiplyer
+                        </th>
+                        <th>
+                            Actual
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
                 {Object.values(this.props.ions).map(ion =>
                     <tr key={ion.key}>
                         <td>{ion.ion}</td>
@@ -58,6 +62,9 @@ class Ions extends Component {
                         /> </td>
                         <td>{this.props.ppms[ion.ion]}</td>
                     </tr>)}
+
+                </tbody>
+
 
             </table>
             <button className="button" onClick={() => this.calculate(this.props.setResult)}> Calculate </button>
