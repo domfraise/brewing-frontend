@@ -11,7 +11,7 @@ class Ions extends Component {
         console.log("calculating")
         fetch("https://powerful-inlet-02477.herokuapp.com/calculate",
             {method: "POST",
-                body: JSON.stringify(this.props.ions)})
+                body: JSON.stringify(Object.values(this.props.ions))})
             .then((response) => response.json())
             .then((response) => setResult(response))
             .catch((e) => console.log(e))
@@ -19,7 +19,6 @@ class Ions extends Component {
     }
 
     render() {
-        console.log(this.props)
         return (
             <div className="column">
             <h2 className="subtitle mb-4">Ion Configuration</h2>
@@ -40,12 +39,23 @@ class Ions extends Component {
                     Actual
                 </th>
 
-                {this.props.ions.map(ion =>
-                    <tr>
+                {Object.values(this.props.ions).map(ion =>
+                    <tr key={ion.key}>
                         <td>{ion.ion}</td>
-                        <td> <input type="text" value={ion.desired}/> </td>
-                        <td> <input type="text" value={ion.plusminus}/> </td>
-                        <td> <input type="text" value={ion.multiplyer}/> </td>
+                        <td> <input type="text"
+                                    value={ion.desired}
+                                    onChange={(e) => this.props.setDesired(ion.key, e.target.value)}
+                        /> </td>
+                        <td> <input type="text"
+                                    value={ion.plusminus}
+                                    onChange={(e) => this.props.setPlusMinus(ion.key, e.target.value)}
+                        /> </td>
+                        <td> <input type="text"
+                                    value={ion.multiplyer}
+                                    onChange={(e) => this.props.setMultiplyer(ion.key, e.target.value)}
+
+
+                        /> </td>
                         <td>{this.props.ppms[ion.ion]}</td>
                     </tr>)}
 

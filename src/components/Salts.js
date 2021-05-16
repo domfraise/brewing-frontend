@@ -19,7 +19,7 @@ class Salts extends Component {
                         Weight(g)
                     </th>
                     {Object.entries(this.props.weights).map(([name, weight], _)  =>
-                        <tr>
+                        <tr key={name}>
                             <td>{name}</td>
                             <td>{weight}</td>
                         </tr>)}
