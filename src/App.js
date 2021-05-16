@@ -1,10 +1,8 @@
-import {useState, useEffect} from 'react';
+import {useState} from 'react';
 import './App.css';
 
 function App() {
   const [result, setResult] = useState({ppms: {}, weights: {}})
-
-  useEffect(() => console.log(result), [])
 
   return (
     <div className="App">
@@ -13,11 +11,11 @@ function App() {
       <meta name="viewport" content="width=device-width, initial-scale=1"/>
       <title>Brewing</title>
     </head>
-      <h1 class="title mt-5"> Brewing - Salts </h1>
-      <div className={"level"}>
+      <h1 className="title mt-5"> Brewing - Salts </h1>
+      <section className="section columns">
         <Ions ions={ions} ppms={result.ppms} setResult={setResult}/>
         <Salts salts={salts} weights={result.weights}/>
-      </div>
+      </section>
     </div>
   );
 }
@@ -38,11 +36,8 @@ const salts = [
 
 function calculate (setResult){
   console.log("calculating")
-  let response =  fetch("https://powerful-inlet-02477.herokuapp.com/calculate",
+  fetch("https://powerful-inlet-02477.herokuapp.com/calculate",
     {method: "POST",
-    headers: {
-      // 'Content-Type': 'application/json'
-    },
     body: JSON.stringify(ions)})
     .then((response) => response.json())
     .then(setResult)
@@ -50,37 +45,32 @@ function calculate (setResult){
 
 }
 
-function Salts({salts, weights}){
+function Salts({weights}){
   return (
-    <section className="section level-item">
-      <h2 class="subtitle mb-4"> Salts in 10L </h2>
-        <table class="table card is-fullwidth">
+    <div className="column">
+      <h2 className="subtitle mb-4"> Salts in 10L </h2>
+        <table className="table card is-fullwidth">
           <th>
             Salt
           </th>
           <th>
             Weight(g)
           </th>
-
-
           {Object.entries(weights).map(([name, weight], _)  =>
             <tr>
               <td>{name}</td>
               <td>{weight}</td>
-
             </tr>)}
-
         </table>
-
-    </section>
+    </div>
   )
 }
 
 function Ions({ions, setResult, ppms}) {
   return (
-    <section class="section level-item">
-      <h2 class="subtitle mb-4">Ion Configuration</h2>
-        <table class="table card is-fullwidth">
+    <div className="column">
+      <h2 className="subtitle mb-4">Ion Configuration</h2>
+        <table className="table card is-fullwidth">
           <th>
             Ion
           </th>
@@ -110,8 +100,8 @@ function Ions({ions, setResult, ppms}) {
       <div className={"container"}>
 
       </div>
-      <button class="button" onClick={() => calculate(setResult)}> Calculate </button>
-    </section>
+      <button className="button" onClick={() => calculate(setResult)}> Calculate </button>
+    </div>
   )
 }
 
